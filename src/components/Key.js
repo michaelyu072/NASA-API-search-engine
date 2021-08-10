@@ -10,8 +10,11 @@ function Key({number}) {
     return ( <>
 
         {
-        black ? <div className = 'blackKeyContainer'><div className = 'blackKey'>{number}</div></div>
-        : <div className = {"whiteKey"}>{number}</div>
+        black ? 
+        <div className = 'blackKeyContainer'>
+            <div className = 'blackKey'><p className = "letter">{number}</p></div>
+        </div>
+        : <div className = {"whiteKey"}><p className = "letter">{number}</p></div>
         }
 
         </>) ;
