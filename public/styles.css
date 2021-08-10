@@ -2,16 +2,40 @@
 
 
 .piano {
+  position: relative;
   background: orange;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   height: 300px;
+}
+
+.whiteKey {
+  cursor: pointer;
+  background: white;
+  width: 50px;
+  height: 100%;
+  border: 1px solid black;
+}
+
+.blackKeyContainer {
+  position: relative;
 }
 
 .blackKey {
   background: black;
+  position: absolute;
+  height: 70%;
+  width: 30px;
+  color: white;
+  left: -15px;
+  cursor: pointer;
 }
 
-.whiteKey {
-  background: white;
+.blackKey:hover {
+  background: gray;
 }
+
+.whiteKey:hover {
+  background: rgb(204, 202, 202);
+}
+

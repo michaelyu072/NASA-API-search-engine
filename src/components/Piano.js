@@ -12,7 +12,7 @@ function Piano () {
         <div className = 'piano'>
             {keys.map((singleKey, index) => {
                 return (
-                    <Key number = {index} key = {singleKey}/>
+                    <Key number = {singleKey} key = {singleKey}/>
                 );
             })}
         </div>

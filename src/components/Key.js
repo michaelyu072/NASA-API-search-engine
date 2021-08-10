@@ -7,11 +7,14 @@ function Key({number}) {
     if(number === 2 || number === 4 || number === 7 || number === 9 || number === 11) {
         black = true;
     }
-    return (
-        <div className = {black? "blackKey" : "whiteKey"}>
-            {number}
-        </div>
-    )
+    return ( <>
+
+        {
+        black ? <div className = 'blackKeyContainer'><div className = 'blackKey'>{number}</div></div>
+        : <div className = {"whiteKey"}>{number}</div>
+        }
+
+        </>) ;
 
 }
 
