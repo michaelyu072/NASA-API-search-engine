@@ -1,10 +1,10 @@
 import React from "react";
-import Piano from './Piano';
+import Main from './Main';
 
 function App() {
   return (
     <div className="container">
-      <Piano/>
+      <Main/>
     </div>
   );
 }
