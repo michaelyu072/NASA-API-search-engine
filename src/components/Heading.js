@@ -8,4 +8,11 @@ function Heading() {
     </p>);
 }
 
-export default Heading;
+function Heading2() {
+    return (
+    <p className = "heading2">
+        NASA Image API Search Engine
+    </p>);
+}
+
+export { Heading, Heading2 };
