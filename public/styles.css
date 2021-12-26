@@ -26,9 +26,17 @@
   background: linear-gradient(135deg, #001f4d, 60%, #005ce6);
   border: 1px solid black;
   display: flex;
+<<<<<<< HEAD
   justify-content: center;
   align-items: center;
   overflow-x: hidden;
+=======
+  justify-content: flex-end;
+  flex-direction: column;
+  align-items: center;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+>>>>>>> 55e088da4a5581421925530015906d68dbfb623e
 }
 
 
@@ -46,11 +54,27 @@
   border: 2px solid #fff4e4;
   background: none;
   color: white;
+<<<<<<< HEAD
 }
 
 .searchBarContainer:hover {
   background: #005ce6;
   border: 2px solid #005ce6;
+=======
+  left: -15px;
+  cursor: pointer;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  align-items: center;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+
+
+.blackKey:hover {
+  background: gray;
+>>>>>>> 55e088da4a5581421925530015906d68dbfb623e
 }
 
 .iconContainer {
