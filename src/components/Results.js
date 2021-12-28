@@ -1,8 +1,12 @@
 import React from "react";
 import SearchBar from "./SearchBar";
 import { Heading2 } from "./Heading";
+import SearchButton from './SearchButton';
+import { useState } from 'react';
 
-function Results() {
+function Results(props) {
+
+
   return (
     <section className="main">
       <div className="searchContainer">
@@ -12,7 +16,8 @@ function Results() {
               <Heading2 />
             </div>
 
-            <SearchBar/>
+            <SearchBar keyword = {props.keyword} updateTerm = {props.update}/>
+            <SearchButton keyword = {props.keyword} text = 'Search' redirect = ''/>
           </div>
         </div>
       </div>
