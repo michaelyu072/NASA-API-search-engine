@@ -7,7 +7,7 @@ import { useState } from 'react';
 
 function App() {
 
-  const [keyword, updateKeyWord] = useState('default keyword');
+  const [keyword, updateKeyWord] = useState('');
 
   console.log(keyword);
   return (

@@ -25,7 +25,6 @@ function SearchButton(props) {
 
 
     return (<>
-    <p style = {{color: "white"}}>{title} {process(description)}</p>
             <button className = 'searchButton' onClick = {search}>
                 {props.text}
             </button>

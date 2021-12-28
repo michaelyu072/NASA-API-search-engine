@@ -16,8 +16,46 @@ function Results(props) {
               <Heading2 />
             </div>
 
-            <SearchBar keyword = {props.keyword} updateTerm = {props.update}/>
+            <SearchBar keyword = {props.keyword} updateTerm = {props.update} />
             <SearchButton keyword = {props.keyword} text = 'Search' redirect = ''/>
+
+          </div>
+          <div className = 'resultsBottomContainer'>
+              <div className = 'resultsList'>
+                <div className = 'resultsItem'>
+
+                </div>
+                <div className = 'resultsItem'>
+
+                </div>
+                <div className = 'resultsItem'>
+
+                </div>
+                <div className = 'resultsItem'>
+
+                </div>
+                <div className = 'resultsItem'>
+
+                </div>
+                <div className = 'resultsItem'>
+
+                </div>
+                <div className = 'resultsItem'>
+
+                </div>
+                <div className = 'resultsItem'>
+
+                </div>
+                <div className = 'resultsItem'>
+
+                </div>
+                <div className = 'resultsItem'>
+
+                </div>
+                <div className = 'resultsItem'>
+
+                </div>
+              </div>
           </div>
         </div>
       </div>
