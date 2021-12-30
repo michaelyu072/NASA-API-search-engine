@@ -16,7 +16,7 @@
 .main{
   width: 100%;
   height: 100%;
-  min-height: 600px;
+  min-height: 800px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -216,18 +216,39 @@
   background-color:#b5c2d4;
 }
 
+.imgContainer {
+  width: 20%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .imgPlaceHolder {
   width: 50px;
   height: 50px;
-  border: 1px solid blue;
-  background: gray;
+  border-radius: 5px;
 }
 
 .resultImg {
+  border-radius: 5px;
   height: 100%;
   width: 100%;
 }
 
+.resultTitle {
+  color: white;
+  font-family: sans-serif;
+  width: 30%;
+  padding-right: 10px;
+}
+
+.resultDescription {
+  color: white;
+  font-family: sans-serif;
+  width: 50%;
+  padding-right: 10px;
+  padding-left: 10%;
+}
 @media (max-width: 800px) {
   .heading {
     font-size: 30px;
@@ -244,7 +265,22 @@
     width: 80%;
   }
   
+  .imgContainer {
+    padding-left: 5px;
+  }
+
   .resultsTopContainer {
     align-items: center;
   }
+
+  .resultTitle {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+
+  .resultTitle,
+  .resultDescription {
+    font-size: 11px;
+  }
+
 }

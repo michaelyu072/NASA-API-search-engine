@@ -40,6 +40,15 @@ function Results(props) {
         return(String(stringer).substring(0, index));
     }
 
+    function shorten(stringer) {
+        // if(String(stringer).length < 40) {
+        //     return stringer;
+        // } else {
+        //     return String(stringer).substring(0,40) + "...";
+        // }
+        return String(stringer).length < 50 ? stringer : String(stringer).substring(0, 50) + "...";
+    }
+
     async function updateURL(urls) {
         setURL(urls);
         var imgArr = [];
@@ -90,9 +99,11 @@ function Results(props) {
                {sourceURL.length != 0 ? sourceURL.map((c, index) => {
                    if(index < 10) {
                     return <div className = 'resultsItem' key = {index}>
+                            <div className = 'imgContainer'>
                             <div className = 'imgPlaceHolder'><img className = 'resultImg' src = {imgURL[index]}></img></div>
-                            <p>{title[index]}</p>
-                            <p>{description[index]}</p>
+                            </div>
+                            <p className = 'resultTitle'>{title[index]}</p>
+                            <p className = 'resultDescription'>{shorten(description[index])}</p>
                     </div>;
                    }
                }) : <div className = 'noResults'><span className = 'noResults'>No Results</span></div>}           
