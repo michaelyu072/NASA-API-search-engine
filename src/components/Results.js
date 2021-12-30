@@ -2,7 +2,7 @@ import React from "react";
 import SearchBar from "./SearchBar";
 import { Heading2 } from "./Heading";
 import SearchButton from './SearchButton';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 function Results(props) {
@@ -41,16 +41,17 @@ function Results(props) {
     }
 
     function shorten(stringer) {
-        // if(String(stringer).length < 40) {
-        //     return stringer;
-        // } else {
-        //     return String(stringer).substring(0,40) + "...";
-        // }
         return String(stringer).length < 50 ? stringer : String(stringer).substring(0, 50) + "...";
     }
 
     async function updateURL(urls) {
         setURL(urls);
+        if(urls.length == 0) {
+            setImgURL([]);
+            setTitle([]);
+            setDescription([]);
+            return;
+        }
         var imgArr = [];
         var descriptionArr = [];
         var titleArr = [];
@@ -81,6 +82,10 @@ function Results(props) {
     }
 
 
+    useEffect(() => {
+        updateKeyWord();
+    }, [props.firstSearch])
+
   return (
     <section className="main">
       <div className="searchContainer">
@@ -102,8 +107,8 @@ function Results(props) {
                             <div className = 'imgContainer'>
                             <div className = 'imgPlaceHolder'><img className = 'resultImg' src = {imgURL[index]}></img></div>
                             </div>
-                            <p className = 'resultTitle'>{title[index]}</p>
-                            <p className = 'resultDescription'>{shorten(description[index])}</p>
+                            <p className = 'resultTitle'>{title[index] ? title[index] : "loading..."}</p>
+                            <p className = 'resultDescription'>{description[index] ? shorten(description[index]) : "loading..."}</p>
                     </div>;
                    }
                }) : <div className = 'noResults'><span className = 'noResults'>No Results</span></div>}           

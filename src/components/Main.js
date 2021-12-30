@@ -11,7 +11,7 @@ function Main(props) {
       <div className="searchContainer">
         <Heading />
         <SearchBar keyword = {props.keyword} updateTerm = {props.update} />
-        <SearchButton keyword = {props.keyword} text = 'Search' redirect = 'results'/> 
+        <SearchButton setFirstSearch = {props.setFirstSearch} keyword = {props.keyword} text = 'Search' redirect = 'results'/> 
       </div>
     </section>
   );

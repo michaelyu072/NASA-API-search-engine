@@ -9,6 +9,7 @@ import { useState } from 'react';
 function App() {
 
   const [keyword, update] = useState('');
+  const [firstSearch, setFirstSearch] = useState('firstSearch');
   const [dataArray, updateDataArray] = useState([]);
   const endpoint = 'https://images-api.nasa.gov';
 
@@ -36,8 +37,8 @@ function App() {
     <div className="container">
       <BrowserRouter>
         <Routes>
-          <Route path = "/" element = {<Main keyword = {keyword} update = {updateKeyWord}/>}/>
-          <Route path = "/Results" element = {<Results urls = {dataArray} keyword = {keyword} update = {updateKeyWord}/>}/>
+          <Route path = "/" element = {<Main setFirstSearch = {setFirstSearch} keyword = {keyword} update = {updateKeyWord}/>}/>
+          <Route path = "/Results" element = {<Results firstSearch = {firstSearch} urls = {dataArray} keyword = {keyword} update = {updateKeyWord}/>}/>
           <Route path = '*' element = {<NotFound/>} />
         </Routes>
       </BrowserRouter>
