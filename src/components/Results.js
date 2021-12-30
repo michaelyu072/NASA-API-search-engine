@@ -4,14 +4,21 @@ import { Heading2 } from "./Heading";
 import SearchButton from './SearchButton';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useSpring, animated } from 'react-spring';
+import Display from './Display';
 
 function Results(props) {
 
-    const [sourceURL, setURL] = useState(props.urls);
+    const [rendered, toggleRendered] = useState(false);
+    const moves = useSpring({opacity : rendered ? 1 : 0, config: {duration: 1000}});
     const [imgURL, setImgURL] = useState([]);
+    const [sourceURL, setURL] = useState([]);
     const [title, setTitle] = useState([]);
     const [description, setDescription] = useState([]);
-    const [loaded, setLoaded] = useState(false);
+    const [displayImg, setDisplayImg] = useState('');
+    const [displayTitle, setDisplayTitle] = useState('');
+    const [displayDescription, setDisplayDescription] = useState('');
+    const [displaying, toggleDisplaying] = useState(false);
     const endpoint = 'https://images-api.nasa.gov';
 
     function updateKeyWord() {
@@ -25,27 +32,24 @@ function Results(props) {
               newArr.push(arr[i].href);
             }
           }
-          updateURL(newArr);
-          
+          updateURL(newArr);        
         }).catch((e) => { console.log(e);})
       } else {
       }
     }
-
+////////////////////////////////////////////////////////////////////////////////////
     function truncate(stringer) {
         var index = stringer.length;
-
         if(stringer.includes("Read More")) {
             index = String(stringer).indexOf("Read more");
         }
-
         return(String(stringer).substring(0, index));
     }
 
     function shorten(stringer) {
         return String(stringer).length < 50 ? stringer : String(stringer).substring(0, 50) + "...";
     }
-
+////////////////////////////////////////////////////////////////////////
     async function updateURL(urls) {
         setURL(urls);
         if(urls.length == 0) {
@@ -57,12 +61,19 @@ function Results(props) {
         var imgArr = [];
         var descriptionArr = [];
         var titleArr = [];
-        for(var i = 0; i < 10; ++i) {
+        var i = 0;
+        while(imgArr.length < 10 && i < urls.length) {
+            console.log(i);
             let prom = await axios.get(urls[i]);
             var result = JSON.parse(JSON.stringify(prom));
             // console.log(result);
             // console.log(result.data[0]);
-            imgArr.push(result.data[0]);
+            if(result.data[0].includes('jpg')) {
+                imgArr.push(result.data[0]);
+            } else {
+                ++i;
+                continue;
+            }
             let prom2 = await axios.get(result.data[result.data.length - 1]);
             var obj = JSON.parse(JSON.stringify(prom2)).data;
             // console.log(obj);
@@ -74,6 +85,7 @@ function Results(props) {
                 }
             descriptionArr.push(truncate(newObj.description));
             titleArr.push(newObj.title);
+            ++i;
         }
         // console.log(imgArr);
         // console.log(descriptionArr);
@@ -83,17 +95,28 @@ function Results(props) {
         setDescription(descriptionArr);
     }
 
+    
+//////////////////////////////
 
     useEffect(() => {
         updateKeyWord();
     }, [props.firstSearch])
 
+    useEffect(() => {
+        toggleRendered(true);
+    },[]);
 
-    console.log(loaded);
+////////////////////////////////////
 
+    function setDisplay(img, title, description) {
+        setDisplayDescription(description);
+        setDisplayTitle(title);
+        setDisplayImg(img);
+    }
   return (
     <section className="main">
-      <div className="searchContainer">
+        <Display/>
+          <animated.div className="searchContainer" style = {moves}>
         <div className="resultsContainer">
           <div className="resultsTopContainer">
             <div className = 'heading2Container'>
@@ -101,14 +124,14 @@ function Results(props) {
             </div>
 
             <SearchBar keyword = {props.keyword} updateTerm = {props.update} />
-            <SearchButton imgURL = {imgURL} loaded = {loaded} update = {updateKeyWord} keyword = {props.keyword} text = 'Search' redirect = ''/>
+            <SearchButton imgURL = {imgURL} update = {updateKeyWord} keyword = {props.keyword} text = 'Search' redirect = ''/>
 
           </div>
           <div className = 'resultsBottomContainer'>
               <div className = 'resultsList'>
-               {sourceURL.length != 0 ? sourceURL.map((c, index) => {
+               {imgURL.length != 0 ? imgURL.map((c, index) => {
                    if(index < 10) {
-                    return <div className = 'resultsItem' key = {index}>
+                    return <div className = 'resultsItem' key = {index} onClick = {() => {setDisplay(imgURL[index],title[index],description[index])}}>
                             <div className = 'imgContainer'>
                             <div className = 'imgPlaceHolder'><img className = 'resultImg' src = {imgURL[index]}></img></div>
                             </div>
@@ -120,7 +143,7 @@ function Results(props) {
               </div>
           </div>
         </div>
-      </div>
+      </animated.div>
     </section>
   );
 }

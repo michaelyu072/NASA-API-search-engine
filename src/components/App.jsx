@@ -17,7 +17,7 @@ function App() {
     update(newWord);
     if(newWord) {
     axios.get(`${endpoint}/search?q=${newWord}`).then((res) => {
-      console.log(res);
+      // console.log(res);
       var arr = res.data.collection.items;
       var newArr = [];
       for(var i = 0; i < arr.length; ++i) {

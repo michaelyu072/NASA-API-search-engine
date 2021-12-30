@@ -15,8 +15,8 @@ function SearchButton(props) {
         }
     }
 
-    console.log("clicked " + clicked);
-    console.log("loaded " + props.loaded);
+    // console.log("clicked " + clicked);
+    // console.log("loaded " + props.loaded);
 
     useEffect(() => {
         setClicked(false);

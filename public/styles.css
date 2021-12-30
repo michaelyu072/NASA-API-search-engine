@@ -23,6 +23,7 @@
   overflow-x: hidden;
   margin: 0;
   padding: 0;
+  background: linear-gradient(165deg, #404c74 , 15%,  #001f4d, 70%, rgb(4, 3, 77));
 }
 
 .heading,
