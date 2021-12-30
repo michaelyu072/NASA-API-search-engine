@@ -8,6 +8,9 @@ function SearchButton(props) {
     const [clicked, setClicked] = useState(false);
 
     function search() {
+        if(!props.keyword) {
+            return;
+        }
         setRedirect(true);
         setClicked(true);
         if(props.update) {

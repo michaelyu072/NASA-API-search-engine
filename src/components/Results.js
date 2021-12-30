@@ -112,10 +112,12 @@ function Results(props) {
         setDisplayDescription(description);
         setDisplayTitle(title);
         setDisplayImg(img);
+        toggleDisplaying(true);
     }
   return (
     <section className="main">
-        <Display/>
+    {displaying? <Display displayDescription = {displayDescription} displayTitle = {displayTitle} displayImg = {displayImg} displaying = {displaying} exit = {() => {toggleDisplaying(false)}}/> : <></>}
+
           <animated.div className="searchContainer" style = {moves}>
         <div className="resultsContainer">
           <div className="resultsTopContainer">
@@ -128,6 +130,7 @@ function Results(props) {
 
           </div>
           <div className = 'resultsBottomContainer'>
+          {displaying ? <></> :
               <div className = 'resultsList'>
                {imgURL.length != 0 ? imgURL.map((c, index) => {
                    if(index < 10) {
@@ -140,7 +143,7 @@ function Results(props) {
                     </div>;
                    }
                }) : <div className = 'noResults'><span className = 'noResults'>No Results</span></div>}           
-              </div>
+              </div>}
           </div>
         </div>
       </animated.div>
