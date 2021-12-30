@@ -28,7 +28,7 @@ function SearchButton(props) {
 
     return (<>
             <button className = 'searchButton' onClick = {search}>
-                {!props.loaded && clicked? 'loading...' : props.text}
+                {!props.loaded && clicked? 'Loading...' : props.text}
             </button>
             {redirect && props.redirect != ""? <Navigate to = {props.redirect}/> : <></>}</>);
 

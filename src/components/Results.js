@@ -19,6 +19,7 @@ function Results(props) {
     const [displayTitle, setDisplayTitle] = useState('');
     const [displayDescription, setDisplayDescription] = useState('');
     const [displaying, toggleDisplaying] = useState(false);
+    const [firstSearch, setFirstSearch] = useState(true);
     const endpoint = 'https://images-api.nasa.gov';
 
     function updateKeyWord() {
@@ -35,6 +36,7 @@ function Results(props) {
           updateURL(newArr);        
         }).catch((e) => { console.log(e);})
       } else {
+          setFirstSearch(false);
       }
     }
 ////////////////////////////////////////////////////////////////////////////////////
@@ -56,6 +58,7 @@ function Results(props) {
             setImgURL([]);
             setTitle([]);
             setDescription([]);
+            setFirstSearch(false);
             return;
         }
         var imgArr = [];
@@ -93,6 +96,7 @@ function Results(props) {
         setImgURL(imgArr);
         setTitle(titleArr);
         setDescription(descriptionArr);
+        setFirstSearch(false);
     }
 
     
@@ -142,7 +146,7 @@ function Results(props) {
                             <p className = 'resultDescription'>{description[index] ? shorten(description[index]) : "loading..."}</p>
                     </div>;
                    }
-               }) : <div className = 'noResults'><span className = 'noResults'>No Results</span></div>}           
+               }) : <div className = 'noResults'><span className = 'noResults'>{props.firstSearch && firstSearch? 'Loading...' : "No Results"}</span></div>}           
               </div>}
           </div>
         </div>
