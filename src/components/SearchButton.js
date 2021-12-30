@@ -1,26 +1,31 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function SearchButton(props) {
 
     const [redirect, setRedirect] = useState(false);
+    const [clicked, setClicked] = useState(false);
 
     function search() {
         setRedirect(true);
+        setClicked(true);
         if(props.update) {
             props.update();
         }
-        if(props.setFirstSearch) {
-            props.setFirstSearch(true);
-        }
     }
 
+    console.log("clicked " + clicked);
+    console.log("loaded " + props.loaded);
+
+    useEffect(() => {
+        setClicked(false);
+    }, [props.imgURL])
     
 
     return (<>
             <button className = 'searchButton' onClick = {search}>
-                {props.text}
+                {!props.loaded && clicked? 'loading...' : props.text}
             </button>
             {redirect && props.redirect != ""? <Navigate to = {props.redirect}/> : <></>}</>);
 

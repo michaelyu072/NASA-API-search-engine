@@ -11,6 +11,7 @@ function Results(props) {
     const [imgURL, setImgURL] = useState([]);
     const [title, setTitle] = useState([]);
     const [description, setDescription] = useState([]);
+    const [loaded, setLoaded] = useState(false);
     const endpoint = 'https://images-api.nasa.gov';
 
     function updateKeyWord() {
@@ -27,6 +28,7 @@ function Results(props) {
           updateURL(newArr);
           
         }).catch((e) => { console.log(e);})
+      } else {
       }
     }
 
@@ -58,12 +60,12 @@ function Results(props) {
         for(var i = 0; i < 10; ++i) {
             let prom = await axios.get(urls[i]);
             var result = JSON.parse(JSON.stringify(prom));
-            console.log(result);
-            console.log(result.data[0]);
+            // console.log(result);
+            // console.log(result.data[0]);
             imgArr.push(result.data[0]);
             let prom2 = await axios.get(result.data[result.data.length - 1]);
             var obj = JSON.parse(JSON.stringify(prom2)).data;
-            console.log(obj);
+            // console.log(obj);
             var newObj = {};
                 for (var k in obj) {
                     var key = k.includes(":") ? k.split(':')[1].toLowerCase() : k.toLowerCase();
@@ -73,9 +75,9 @@ function Results(props) {
             descriptionArr.push(truncate(newObj.description));
             titleArr.push(newObj.title);
         }
-        console.log(imgArr);
-        console.log(descriptionArr);
-        console.log(titleArr);
+        // console.log(imgArr);
+        // console.log(descriptionArr);
+        // console.log(titleArr);
         setImgURL(imgArr);
         setTitle(titleArr);
         setDescription(descriptionArr);
@@ -85,6 +87,9 @@ function Results(props) {
     useEffect(() => {
         updateKeyWord();
     }, [props.firstSearch])
+
+
+    console.log(loaded);
 
   return (
     <section className="main">
@@ -96,7 +101,7 @@ function Results(props) {
             </div>
 
             <SearchBar keyword = {props.keyword} updateTerm = {props.update} />
-            <SearchButton update = {updateKeyWord} keyword = {props.keyword} text = 'Search' redirect = ''/>
+            <SearchButton imgURL = {imgURL} loaded = {loaded} update = {updateKeyWord} keyword = {props.keyword} text = 'Search' redirect = ''/>
 
           </div>
           <div className = 'resultsBottomContainer'>
