@@ -330,6 +330,8 @@
   margin-bottom: 20px;
   margin-top: 20px;
   color: #b5c2d4;
+  font-family: sans-serif;
+  overflow-wrap: break-word;
 }
 @media (max-width: 800px) {
   .heading {
@@ -363,6 +365,10 @@
   .resultTitle,
   .resultDescription {
     font-size: 11px;
+  }
+
+  .displayImgBox {
+    height: 200px;
   }
 
 }

@@ -8,7 +8,7 @@ import {useState, useEffect} from 'react';
 function Main(props) {
 
     const [rendered, toggleRendered] = useState(false);
-    const moves = useSpring({opacity : rendered ? 1 : 0, config: {duration: 1500}});
+    const moves = useSpring({opacity : rendered ? 1 : 0, config: {duration: 1000}});
 
     useEffect(() => {
         toggleRendered(true);

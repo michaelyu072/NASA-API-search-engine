@@ -8,7 +8,7 @@ function SearchBar(props) {
         <div className = 'iconContainer'>
         <SearchIcon/>
         </div>
-        <input placeholder = 'enter an astronomy term!' defaultValue = {props.keyword} className = 'searchBar' 
+        <input placeholder = 'enter a NASA-related search term!' defaultValue = {props.keyword} className = 'searchBar' 
         onChange = {(e) => {props.updateTerm(e.target.value);}}>
 
         </input>

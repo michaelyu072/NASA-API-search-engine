@@ -22,7 +22,7 @@ function Display(props) {
                     <img className = 'displayImg' src = {props.displayImg} alt = 'image not found'></img>
                 </div>
                 <div className = 'displayDescriptionBox'>
-                    <p className = 'displayDescription'>{props.displayDescription}</p>
+                    <p className = 'displayDescription'>{props.displayTitle != props.displayDescription ? props.displayDescription : ''}</p>
                 </div>
             </div>
     </animated.div>;
