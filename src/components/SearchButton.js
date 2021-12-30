@@ -6,23 +6,16 @@ import axios from 'axios';
 function SearchButton(props) {
 
     const [redirect, setRedirect] = useState(false);
-    const [imageURL, setURL] = useState('');
-    const [title, setTitle] = useState('');
-    const [description, setDescription] = useState();
     const endpoint = 'https://images-api.nasa.gov';
 
     function search() {
         setRedirect(true);
-        axios.get(`${endpoint}/search?q=${props.keyword}`).then((res) => {
-            console.log(res);
-        }).catch((e) => { console.log(e);})
+        if(props.update) {
+            props.update();
+        }
     }
 
-    function process(stringer) {
-        var index = String(stringer).indexOf("Read more");
-        return(String(stringer).substring(0, index));
-    }
-
+    
 
     return (<>
             <button className = 'searchButton' onClick = {search}>
