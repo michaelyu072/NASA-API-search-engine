@@ -34,7 +34,7 @@ function Results(props) {
             }
           }
           updateURL(newArr);        
-        }).catch((e) => { console.log(e);})
+        }).catch((e) => { alert("an error has occurred, please refresh and try again"); window.location.reload(); console.log(e);})
       } else {
           setFirstSearch(false);
       }
